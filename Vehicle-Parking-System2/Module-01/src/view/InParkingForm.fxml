@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="InParkingContext" prefHeight="704.0" prefWidth="1045.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InParkingFormController">
+   <children>
+      <Button layoutX="376.0" layoutY="43.0" onAction="#btnAddVehicleOnAction" prefHeight="51.0" prefWidth="196.0" style="-fx-background-color: #000000;" text="Add Vehicle" textFill="#eae703">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="600.0" layoutY="40.0" onAction="#btnAddDriverOnAction" prefHeight="51.0" prefWidth="196.0" style="-fx-background-color: #000000;" text="Add Driver" textFill="#eae703">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="821.0" layoutY="40.0" onAction="#btnLogoutOnAction" prefHeight="51.0" prefWidth="177.0" style="-fx-background-color: #000000;" text="Log Out" textFill="#eae703">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+      <TableView fx:id="tblInParking" layoutX="28.0" layoutY="144.0" prefHeight="538.0" prefWidth="990.0">
+        <columns>
+          <TableColumn fx:id="colVehicle" prefWidth="256.0" text="Vehicle Number" />
+          <TableColumn fx:id="colType" prefWidth="238.0" text="Vehicle Type" />
+            <TableColumn fx:id="colNumber" prefWidth="215.0" text="Parking Slot" />
+            <TableColumn fx:id="colTime" prefWidth="280.0" text="Parked Time" />
+        </columns>
+      </TableView>
+      <Label layoutX="14.0" layoutY="51.0" prefHeight="23.0" prefWidth="125.0" text="In Parking" textFill="#614949">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="154.0" layoutY="43.0" onAction="#btnOnDeliveryOnAction" prefHeight="51.0" prefWidth="196.0" style="-fx-background-color: #000000;" text="On Delivery" textFill="#eae703">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

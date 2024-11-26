@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="OnDeliveryContext" prefHeight="704.0" prefWidth="1045.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OnDeliveryFormController">
+   <children>
+      <Button layoutX="566.0" layoutY="53.0" onAction="#btnAddVehicleOnAction" prefHeight="51.0" prefWidth="196.0" style="-fx-background-color: #000000;" text="Add Vehicle" textFill="#eae703">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="798.0" layoutY="53.0" onAction="#btnAddDriverOnAction" prefHeight="51.0" prefWidth="196.0" style="-fx-background-color: #000000;" text="Add Driver" textFill="#eae703">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+      <TableView fx:id="tblOnDelivery" layoutX="38.0" layoutY="154.0" prefHeight="538.0" prefWidth="990.0">
+         <columns>
+            <TableColumn fx:id="colVehicle" prefWidth="186.0" text="Vehicle Number" />
+            <TableColumn fx:id="colType" prefWidth="175.0" text="Vehicle Type" />
+            <TableColumn fx:id="colDriver" prefWidth="225.0" text="Driver Name" />
+            <TableColumn fx:id="colTime" prefWidth="402.0" text="Left Time" />
+            <TableColumn fx:id="colSlot" minWidth="0.0" prefWidth="0.0" text="Slot" />
+         </columns>
+      </TableView>
+      <Label layoutX="77.0" layoutY="61.0" prefHeight="35.0" prefWidth="184.0" text="On Delivery" textFill="#614949">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="337.0" layoutY="53.0" onAction="#btnInParking" prefHeight="51.0" prefWidth="196.0" style="-fx-background-color: #000000;" text="In Parking" textFill="#eae703">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
