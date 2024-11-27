@@ -50,8 +50,5 @@ public class Database3 {
         vehicleTable.add(
                 new Vehicletable("QH-3444", "Cargo Lorry", 5000, 4)
         );
-
-
     }
-
 }
