@@ -1,12 +1,12 @@
 package main;
-
 import java.io.IOException;
-
+import java.sql.Connection;
+import main.databse.DatabaseConnector;
 import ocsf.server.src.AbstractServer;
 import ocsf.server.src.ConnectionToClient;
 
 public class MainServer extends AbstractServer{
-	
+	public static Connection dbConnection;
 	private int port;
 	
 	public MainServer(int port) {
@@ -16,6 +16,12 @@ public class MainServer extends AbstractServer{
 	
 	public void startServer() {
 		try {
+			DatabaseConnector dbConnector = new DatabaseConnector();
+			dbConnection = dbConnector.getConnection("jdbc:mysql://localhost/park_db?serverTimezone=IST","root","SK212142806sk");
+			if(dbConnection != null)
+				System.out.println("DataBase Connection successful");
+			else
+				System.out.println("Failed to connect to database");
 			System.out.println("starting server on port " + port);
 			listen();
 		} catch (IOException e) {
