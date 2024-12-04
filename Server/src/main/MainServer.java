@@ -35,8 +35,15 @@ public class MainServer extends AbstractServer{
 	}
 
 	@Override
-	protected void handleMessageFromClient(Object arg0, ConnectionToClient arg1) {
+	protected void handleMessageFromClient(Object message, ConnectionToClient client) {
 		// TODO Auto-generated method stub
+		System.out.println(message);
+		try {
+			client.sendToClient("okay");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
