@@ -1,11 +1,16 @@
 package main.request;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
+import commons.entities.Park;
 import commons.entities.User;
 import commons.requests.Message;
 import commons.requests.RequestType;
 import main.Configs;
+import main.request.parking.ParkRequestHandler;
+import main.request.parking.SlotRequestHandler;
 import main.request.user.UserRequestHandler;
 import ocsf.server.src.ConnectionToClient;
 
@@ -15,6 +20,7 @@ public class RequestHandler {
 	public static void handleRequest(Message msg, ConnectionToClient client) {
 		boolean success = false;
 		User u;
+		Park park1, park2;
 		switch(msg.getRequestEnumType()) {
 		case REGISTER:
 			if (msg.getRequestData() instanceof User) {
@@ -30,6 +36,25 @@ public class RequestHandler {
 				msg.setResponse(u);
 			}
 		break;
+		case GET_PARKS:
+			Map<String, List<Park>> parks = ParkRequestHandler.getAllParks();
+			msg.setResponse(parks);
+			success = parks != null;
+			break;
+			
+		case GET_PARK_SLOTS:
+			if (msg.getRequestData() instanceof Park) {
+				try {
+				park1 = (Park) msg.getRequestData();
+				park2 = SlotRequestHandler.getAllParkSlots(park1.getParkName(), park1.getCity());
+				success = park2 != null && park2.getSlots() != null;
+				msg.setResponse(park2);
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+
+			}
+			break;
 		default:
 			respondToClient(client, new Message(RequestType.INVALID_DATATYPE, "Message Type was not found.", false));
 			return;
