@@ -10,6 +10,6 @@ public class Configs {
     public static final File DATA_PATH = new File(ROOT_PATH, "data");
     public static final File PARK_IMAGES_PATH = new File(DATA_PATH, "parks");
 
-    public static final boolean DEBUG = false;
+    public static final boolean DEBUG = true;
 
 }
