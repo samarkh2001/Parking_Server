@@ -69,5 +69,25 @@ public class ParkRequestHandler {
 			return null;
 		}
 	}
+	
+	public static int getParkIdByAddress(String city, String parkName) {
+		if (MainServer.dbConnection == null) {
+			RequestHandler.debug("ParkRequestHandler", "No database connection");
+			return -1;
+		}
+		try {
+			Statement st = MainServer.dbConnection.createStatement();
+			ResultSet rs = st.executeQuery("SELECT park_id FROM park WHERE city_name='"+city+"' AND park_name='"+parkName+"'");
+			if (!rs.next()) {
+				RequestHandler.debug("ParkRequestHandler", "No such park was found");
+				return -1;
+			}
+			return rs.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return -1;
+		}
+	}
 
 }

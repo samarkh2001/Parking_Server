@@ -42,4 +42,51 @@ public class SlotRequestHandler {
 		}
 	}
 	
+	public static boolean isSlotAvbl(int parkId, int rowId, int colId) {
+		if (MainServer.dbConnection == null) {
+			RequestHandler.debug("SlotRequestHandler", "No database connection");
+			return false;
+		}
+		try {
+			Statement st = MainServer.dbConnection.createStatement();
+			ResultSet rs = st.executeQuery("SELECT * FROM slot WHERE park_id='"+parkId+"' AND row_id='"+rowId+"' AND col_id='"+colId+"'");
+			if (!rs.next()) {
+				RequestHandler.debug("SlotRequestHandler", "result set was empty");
+				return true;
+			}
+			rs.close();
+			return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public static boolean reserveSlot(Slot s) {
+		if (MainServer.dbConnection == null) {
+			RequestHandler.debug("SlotRequestHandler", "No database connection");
+			return false;
+		}
+		int parkId = ParkRequestHandler.getParkIdByAddress(s.getPark().getCity(), s.getPark().getParkName());
+		if (parkId < 0)
+			return false;
+		
+		if (!isSlotAvbl(parkId, s.getRow(), s.getCol())) {
+			RequestHandler.debug("SlotRequestHandler", "Slot already reserved");
+			return false;
+		}
+		
+		try {
+			Statement st = MainServer.dbConnection.createStatement();
+			int res = st.executeUpdate("INSERT INTO slot (park_id, row_id, col_id, enter_date, enter_hour, enter_mins, park_status)"
+					+ "VALUES ('"+parkId+"','"+s.getRow()+"','"+s.getCol()+"','"+s.getEnterDate()+"','"+s.getHour()+"','"+s.getMin()+"','0')");
+			return res > 0;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 }

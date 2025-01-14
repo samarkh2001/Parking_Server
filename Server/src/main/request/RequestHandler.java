@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import commons.entities.Park;
+import commons.entities.Slot;
 import commons.entities.User;
 import commons.requests.Message;
 import commons.requests.RequestType;
@@ -21,6 +22,7 @@ public class RequestHandler {
 		boolean success = false;
 		User u;
 		Park park1, park2;
+		Slot slot;
 		switch(msg.getRequestEnumType()) {
 		case REGISTER:
 			if (msg.getRequestData() instanceof User) {
@@ -52,7 +54,12 @@ public class RequestHandler {
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
-
+			}
+			break;
+		case RESERVE_SLOT:
+			if (msg.getRequestData() instanceof Slot) {
+				slot = (Slot) msg.getRequestData();
+				success = SlotRequestHandler.reserveSlot(slot);
 			}
 			break;
 		default:
